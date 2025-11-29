@@ -2223,7 +2223,15 @@ border-bottom: none;
   <li><a href="#methods-and-solutions-for-handling-duplicates" id="toc-methods-and-solutions-for-handling-duplicates" class="nav-link" data-scroll-target="#methods-and-solutions-for-handling-duplicates"><span class="header-section-number">4</span> Methods and Solutions for Handling Duplicates</a></li>
   <li><a href="#best-practices-for-managing-duplicate-data" id="toc-best-practices-for-managing-duplicate-data" class="nav-link" data-scroll-target="#best-practices-for-managing-duplicate-data"><span class="header-section-number">5</span> Best Practices for Managing Duplicate Data</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
+  <li><a href="#helpful-packages-and-lines-of-code" id="toc-helpful-packages-and-lines-of-code" class="nav-link" data-scroll-target="#helpful-packages-and-lines-of-code"><span class="header-section-number">7</span> Helpful packages and lines of code</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">7.1</span> Packages</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">7.2</span> Code</a>
+  <ul class="collapse">
+  <li><a href="#check-if-duplicates-are-present" id="toc-check-if-duplicates-are-present" class="nav-link" data-scroll-target="#check-if-duplicates-are-present"><span class="header-section-number">7.2.1</span> Check if duplicates are present</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li></ul></div></nav>
 </div>
@@ -2301,8 +2309,54 @@ border-bottom: none;
 <h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
 <p>In summary, managing duplicates in data is essential for maintaining data integrity, efficiency, and reliability across various applications. Identifying duplicates is challenging due to variations in data quality, scale, and complexity, but modern techniques like fuzzy matching and partitioning strategies offer effective solutions (<span class="citation" data-cites="Naumann2007">Naumann (<a href="#ref-Naumann2007" role="doc-biblioref">2007</a>)</span>). Organizations must adopt robust methods for detection, removal, and consolidation, supported by automated tools and strong data governance frameworks (<span class="citation" data-cites="Datablist2018">Datablist (<a href="#ref-Datablist2018" role="doc-biblioref">2018</a>)</span>; <span class="citation" data-cites="Oracle2024">Oracle (<a href="#ref-Oracle2024" role="doc-biblioref">2024</a>)</span>). Prevention through standardized data entry, centralized management, and continuous monitoring remains the best long-term strategy to avoid duplication and its associated costs (<span class="citation" data-cites="Meetergo2025">Meetergo (<a href="#ref-Meetergo2025" role="doc-biblioref">2025</a>)</span>; <span class="citation" data-cites="SpareTech2023">SpareTech (<a href="#ref-SpareTech2023" role="doc-biblioref">2023</a>)</span>). Ultimately, an integrated approach that combines technology, process optimization, and staff training ensures that data duplicates do not undermine business intelligence, research accuracy, or operational excellence.</p>
 </section>
-<section id="references" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<section id="helpful-packages-and-lines-of-code" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Helpful packages and lines of code</h1>
+<section id="packages" class="level2" data-number="7.1">
+<h2 data-number="7.1" data-anchor-id="packages"><span class="header-section-number">7.1</span> Packages</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Recommended Packages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Remove exact duplicates</td>
+<td><code>dplyr</code>, <code>data.table</code></td>
+</tr>
+<tr class="even">
+<td>Identify duplicate keys or IDs</td>
+<td><code>janitor</code>, <code>dplyr</code></td>
+</tr>
+<tr class="odd">
+<td>Detect near-duplicates (text)</td>
+<td><code>fuzzyjoin</code>, <code>stringdist</code></td>
+</tr>
+<tr class="even">
+<td>Detect near-duplicates (numbers)</td>
+<td><code>dplyr</code> with rounding/tolerance</td>
+</tr>
+<tr class="odd">
+<td>Fuzzy record linkage across datasets</td>
+<td><code>reclin2</code>, <code>RecordLinkage</code>, <code>fastLink</code>, <code>dedupr</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code" class="level2" data-number="7.2">
+<h2 data-number="7.2" data-anchor-id="code"><span class="header-section-number">7.2</span> Code</h2>
+<section id="check-if-duplicates-are-present" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" data-anchor-id="check-if-duplicates-are-present"><span class="header-section-number">7.2.1</span> Check if duplicates are present</h3>
+</section>
+</section>
+</section>
+<section id="references" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Airbyte2025" class="csl-entry" role="listitem">
 Airbyte. (2025). Maximizing efficiency with data deduplication: Methods and benefits. <em>Https://Airbyte.com/Data-Engineering-Resources/Data-Deduplication</em>.
