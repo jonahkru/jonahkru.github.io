@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jonah Krüger">
+<meta name="author" content="Jonah Krüger (Matriculation: 400825212)">
 <meta name="description" content="HANDLING DUPLICATES IN DATA: CHALLENGES AND SOLUTIONS">
 
 <title>Handling Duplicates in Data: Challenges and Solutions</title>
@@ -2264,6 +2264,8 @@ border-bottom: none;
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">7.2</span> Code</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
+  <li><span class="header-section-number">9</span> Appendix</li>
+  <li><a href="#apx-affidavit" id="toc-apx-affidavit" class="nav-link" data-scroll-target="#apx-affidavit"><span class="header-section-number">10</span> Affidavit</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="handout.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li></ul></div></nav>
 </div>
@@ -2283,7 +2285,7 @@ border-bottom: none;
 <div class="Author">
 <br>
 
-<p>Jonah Krüger</p>
+<p>Jonah Krüger (Matriculation: 400825212)</p>
 <p>Fresenius University of Applied Science</p>
 </div>
 <br>
@@ -2293,7 +2295,7 @@ border-bottom: none;
 </section>
 <section id="author-note" class="level1 unnumbered unlisted AuthorNote">
 <h1 class="unnumbered unlisted AuthorNote">Author Note</h1>
-<p>Correspondence concerning this article should be addressed to Jonah Krüger, Fresenius University of Applied Science, Email: <a href="mailto:krueger.jonah@stud.hs-fresenius.de">krueger.jonah@stud.hs-fresenius.de</a></p>
+<p>Correspondence concerning this article should be addressed to Jonah Krüger (Matriculation: 400825212), Fresenius University of Applied Science, Email: <a href="mailto:krueger.jonah@stud.hs-fresenius.de">krueger.jonah@stud.hs-fresenius.de</a></p>
 <br>
 </section>
 <section id="abstract" class="level1 unnumbered unlisted AuthorNote">
@@ -2305,7 +2307,7 @@ border-bottom: none;
 </section>
 <section id="firstheader" class="level1 title unnumbered unlisted">
 <h1 class="title unnumbered unlisted">Handling Duplicates in Data: Challenges and Solutions</h1>
-<p>Word count: 1091</p>
+<p>Word count: 1261</p>
 </section>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
@@ -2382,6 +2384,7 @@ border-bottom: none;
 </section>
 <section id="code" class="level2" data-number="7.2">
 <h2 data-number="7.2" data-anchor-id="code"><span class="header-section-number">7.2</span> Code</h2>
+<p>Code snippets are based on the example dataset “diamonds.” For other datasets, the code must be adapted accordingly.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check if duplicates are present</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">duplicated</span>(diamonds))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2400,14 +2403,22 @@ border-bottom: none;
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete all duplicates. Only unique data remains</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>diamonds_no_dupes <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="fu">everything</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>diamonds_no_dupes <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (\(x) x[<span class="sc">!</span><span class="fu">duplicated</span>(x) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">duplicated</span>(x, <span class="at">fromLast =</span> <span class="cn">TRUE</span>), ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete all duplicates. One data set of each duplicate remains</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete all duplicates. One dataset of each duplicate remains</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>diamonds_unique <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mark Duplicates</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>diamondsMarked <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transform</span>(<span class="at">is_dup =</span> <span class="fu">duplicated</span>(diamonds))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete all duplicates, but keep the most recent entry.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>diamonds_unique <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  (\(x) x[<span class="sc">!</span><span class="fu">duplicated</span>(x), ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -2454,6 +2465,13 @@ SpareTech. (2023). Best practice: Master data management of duplicates. <em>Http
 TreeSize. (2021). Find and remove duplicate files. <em>Https://Www.jam-Software.de/Treesize/Doppelte-Dateien-Finden-Entfernen.shtml</em>.
 </div>
 </div>
+</section>
+<section class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Appendix</h1>
+</section>
+<section id="apx-affidavit" class="level1" data-appendixtitle="A" data-number="10">
+<h1 data-appendixtitle="A" data-number="10"><span class="header-section-number">10</span> Affidavit</h1>
+<p>I hereby affirm that this submitted paper was authored unaided and solely by me. Additionally, no other sources than those in the reference list were used. Parts of this paper, including tables and figures, that have been taken either verbatim or analogously from other works have in each case been properly cited with regard to their origin and authorship. This paper either in parts or in its entirety, be it in the same or similar form, has not been submitted to any other examination board and has not been published. I acknowledge that the university may use plagiarism detection software to check my thesis. I agree to cooperate with any investigation of suspected plagiarism and to provide any additional information or evidence requested by the university.</p>
 </section>
 
 </main>

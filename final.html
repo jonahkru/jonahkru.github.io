@@ -9,7 +9,7 @@
 <link href="final_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
-  <title>Final Presentation</title>
+  <title>Handling Duplicates in Data: Challenges and Solutions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -192,36 +192,107 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Final Presentation</h1>
+  <h1 class="title">Handling Duplicates in Data: Challenges and Solutions</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="author" class="slide level2">
+<h2>Author</h2>
+<p>Jonah Krüger</p>
+<p>400825212</p>
+<p><a href="https://jonahkru.github.io/handout" class="uri">https://jonahkru.github.io/handout</a></p>
+<p><a href="https://jonahkru.github.io/final" class="uri">https://jonahkru.github.io/final</a></p>
 </section>
-<section id="bullets" class="slide level2">
-<h2>Bullets</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
+<section id="what-is-duplicate-data-and-why-does-it-occur" class="slide level2">
+<h2>What is Duplicate Data and why does it occur?</h2>
+<p>Duplicate data is:</p>
 <ul>
-<li>Content authored with markdown</li>
-<li>Output from executable code</li>
+<li><p>Identical records in a dataset</p></li>
+<li><p>Can also be near identical entries</p></li>
+</ul>
+<p>It occurs due to:</p>
+<ul>
+<li><p>Human or data entry errors</p></li>
+<li><p>Merging data from multiple sources</p></li>
+<li><p>Missing or inconsistent unique identifiers</p></li>
 </ul>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
+<section id="problems-and-challenges" class="slide level2">
+<h2>Problems and Challenges</h2>
+<p>Its a Problem because it:</p>
+<ul>
+<li><p>leads to biased or misleading analysis results</p></li>
+<li><p>can cause incorrect business decisions</p></li>
+<li><p>increases data size and reduces efficiency</p></li>
+</ul>
+<p>Challenges:</p>
+<ul>
+<li><p>Detecting duplicates across large or messy datasets</p></li>
+<li><p>Handling near duplicates that are not exactly identical and deciding whether to remove, merge, or keep duplicates</p></li>
+</ul>
 </section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
+<section id="handling-duplicate-data" class="slide level2">
+<h2>Handling Duplicate Data</h2>
+<p>Deleting:</p>
+<ul>
+<li><p>Remove exact duplicates to keep only unique data</p></li>
+<li><p>Quick and reliable way to clean data</p></li>
+<li><p>Ensures clean, non-redundant data for analysis</p></li>
+</ul>
+<p>Merging:</p>
+<ul>
+<li><p>Combine near-duplicate records into one consolidated entry</p></li>
+<li><p>Useful when records share the same ID but differ in minor fields</p></li>
+</ul>
+</section>
+<section id="identify-duplicates" class="slide level2">
+<h2>Identify Duplicates</h2>
+<p>Install Package ggplot2 and load dataset “diamonds”:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>install.packages("ggplot2")   # (only necessary once)   </span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>library(ggplot2)              # load package</span>
+<span id="cb1-4"><a href=""></a>data("diamonds")   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Determine if there are Duplicates:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>any(duplicated(diamonds)) # Are there duplicates at all?</span>
+<span id="cb2-2"><a href=""></a>TRUE / FALSE</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a>sum(duplicated(diamonds)) # How many duplicates are there?</span>
+<span id="cb2-5"><a href=""></a></span>
+<span id="cb2-6"><a href=""></a>which(duplicated(diamonds)) # Which ones are the duplicates?</span>
+<span id="cb2-7"><a href=""></a></span>
+<span id="cb2-8"><a href=""></a>diamonds[duplicated(diamonds), ] # Get an exact list of all duplicates</span>
+<span id="cb2-9"><a href=""></a></span>
+<span id="cb2-10"><a href=""></a>diamondsMarked &lt;- diamonds |&gt;</span>
+<span id="cb2-11"><a href=""></a>  transform(is_dup = duplicated(diamonds))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="handling-duplicates" class="slide level2">
+<h2>Handling Duplicates</h2>
+<p>Remove all Duplicated Datasets:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>diamonds_no_dupes &lt;- diamonds |&gt;</span>
+<span id="cb3-2"><a href=""></a>  as.data.frame() |&gt;</span>
+<span id="cb3-3"><a href=""></a>  subset(!duplicated(diamonds) &amp; !duplicated(diamonds, fromLast = TRUE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Keep one copy:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>diamonds_unique &lt;- diamonds |&gt;</span>
+<span id="cb4-2"><a href=""></a>  unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Keep the most recent copy:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>diamonds_no_dupes_recent &lt;- diamonds |&gt;</span>
+<span id="cb5-2"><a href=""></a>  (\(x) x[!duplicated(x) &amp; !duplicated(x, fromLast = TRUE), ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise" class="slide level2">
+<h2>Exercise</h2>
+<ol type="1">
+<li>Load the “mpg” dataset into RStudio</li>
+<li>Identify the Duplicates</li>
+<li>Delete the Duplicates if you found anym (either all Duplicated data sets or you keep one copy)</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>install.packages("ggplot2")   # (only necessary once)  </span>
+<span id="cb6-2"><a href=""></a>library(ggplot2)              # load package</span>
+<span id="cb6-3"><a href=""></a>data("mpg")  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
 
 </section>
     </div>
@@ -439,44 +510,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
