@@ -200,8 +200,9 @@
 </section>
 <section id="author" class="slide level2">
 <h2>Author</h2>
-<p>Jonah Krüger</p>
-<p>400825212</p>
+<p>Jonah Krüger<br>
+400825212<br>
+krueger.jonah@stud.hs-fresenius.de</p>
 <p><a href="https://jonahkru.github.io/handout" class="uri">https://jonahkru.github.io/handout</a></p>
 <p><a href="https://jonahkru.github.io/final" class="uri">https://jonahkru.github.io/final</a></p>
 </section>
@@ -251,9 +252,8 @@
 <h2>Identify Duplicates</h2>
 <p>Install Package ggplot2 and load dataset “diamonds”:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>install.packages("ggplot2")   # (only necessary once)   </span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a>library(ggplot2)              # load package</span>
-<span id="cb1-4"><a href=""></a>data("diamonds")   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href=""></a>library(ggplot2)              # load package</span>
+<span id="cb1-3"><a href=""></a>data("diamonds")   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Determine if there are Duplicates:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>any(duplicated(diamonds)) # Are there duplicates at all?</span>
 <span id="cb2-2"><a href=""></a>TRUE / FALSE</span>
@@ -262,14 +262,14 @@
 <span id="cb2-5"><a href=""></a></span>
 <span id="cb2-6"><a href=""></a>which(duplicated(diamonds)) # Which ones are the duplicates?</span>
 <span id="cb2-7"><a href=""></a></span>
-<span id="cb2-8"><a href=""></a>diamonds[duplicated(diamonds), ] # Get an exact list of all duplicates</span>
+<span id="cb2-8"><a href=""></a>diamonds[duplicated(diamonds), ] # Get an exact list of all duplicates.</span>
 <span id="cb2-9"><a href=""></a></span>
-<span id="cb2-10"><a href=""></a>diamondsMarked &lt;- diamonds |&gt;</span>
+<span id="cb2-10"><a href=""></a>diamondsMarked &lt;- diamonds |&gt; # Mark duplicates.</span>
 <span id="cb2-11"><a href=""></a>  transform(is_dup = duplicated(diamonds))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="handling-duplicates" class="slide level2">
 <h2>Handling Duplicates</h2>
-<p>Remove all Duplicated Datasets:</p>
+<p>Remove all duplicated Datasets:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>diamonds_no_dupes &lt;- diamonds |&gt;</span>
 <span id="cb3-2"><a href=""></a>  as.data.frame() |&gt;</span>
 <span id="cb3-3"><a href=""></a>  subset(!duplicated(diamonds) &amp; !duplicated(diamonds, fromLast = TRUE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -283,9 +283,9 @@
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
 <ol type="1">
-<li>Load the “mpg” dataset into RStudio</li>
-<li>Identify the Duplicates</li>
-<li>Delete the Duplicates if you found anym (either all Duplicated data sets or you keep one copy)</li>
+<li>Load the “mpg” dataset into RStudio.</li>
+<li>Identify the Duplicates.</li>
+<li>Delete the Duplicates but keep one copy.</li>
 </ol>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {r´´´} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>install.packages("ggplot2")   # (only necessary once)  </span>
 <span id="cb6-2"><a href=""></a>library(ggplot2)              # load package</span>
